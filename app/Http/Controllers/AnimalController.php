@@ -12,7 +12,10 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+        // Recupera tutti gli animali dal database
+        $animals = Animal::all();
+        // Ritorna la vista 'animals.index' con i dati degli animali
+        return view('animals.index', compact('animals'));
     }
 
     /**
@@ -36,7 +39,8 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        //
+        // Ritorna la vista 'animals.show' con i dati dell'animale specificato
+        return view('animals.show', compact('animal'));
     }
 
     /**
