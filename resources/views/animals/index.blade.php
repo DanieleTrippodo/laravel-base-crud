@@ -13,5 +13,6 @@
             </li>
         @endforeach
     </ul>
+    <a href="{{ url('/') }}">Back to Home</a>
 </body>
 </html>
