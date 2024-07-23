@@ -12,10 +12,35 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        // Recupera tutti gli animali dal database
         $animals = Animal::all();
-        // Ritorna la vista 'animals.index' con i dati degli animali
         return view('animals.index', compact('animals'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('animals.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        // Validazione dei dati
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'species' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        // Creazione di un nuovo animale
+        Animal::create($validatedData);
+
+        // Redirect alla pagina index con un messaggio di successo
+        return redirect()->route('animals.index')->with('success', 'Animal added successfully.');
     }
 
     /**
@@ -23,7 +48,6 @@ class AnimalController extends Controller
      */
     public function show(Animal $animal)
     {
-        // Ritorna la vista 'animals.show' con i dati dell'animale specificato
         return view('animals.show', compact('animal'));
     }
 

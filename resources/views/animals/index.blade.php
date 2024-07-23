@@ -1,4 +1,3 @@
-<!-- resources/views/animals/index.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +5,15 @@
 </head>
 <body>
     <h1>Animal List</h1>
+
+    @if(session('success'))
+        <div>
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <a href="{{ route('animals.create') }}">Add New Animal</a>
+
     <ul>
         @foreach ($animals as $animal)
             <li>
@@ -13,6 +21,7 @@
             </li>
         @endforeach
     </ul>
+
     <a href="{{ url('/') }}">Back to Home</a>
 </body>
 </html>
