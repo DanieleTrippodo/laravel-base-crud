@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add New Animal</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Add New Animal')
+
+@section('content')
     <h1>Add New Animal</h1>
 
     @if ($errors->any())
-        <div>
+        <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -18,23 +17,20 @@
 
     <form action="{{ route('animals.store') }}" method="POST">
         @csrf
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
-        <div>
-            <label for="species">Species:</label>
-            <input type="text" id="species" name="species" value="{{ old('species') }}" required>
+        <div class="mb-3">
+            <label for="species" class="form-label">Species:</label>
+            <input type="text" id="species" name="species" class="form-control" value="{{ old('species') }}" required>
         </div>
-        <div>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description">{{ old('description') }}</textarea>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea id="description" name="description" class="form-control">{{ old('description') }}</textarea>
         </div>
-        <div>
-            <button type="submit">Add Animal</button>
-        </div>
+        <button type="submit" class="btn btn-primary">Add Animal</button>
     </form>
 
-    <a href="{{ route('animals.index') }}">Back to Animal List</a>
-</body>
-</html>
+    <a href="{{ route('animals.index') }}" class="btn btn-secondary mt-3">Back to Animal List</a>
+@endsection

@@ -1,27 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Animal Reserve</title>
-</head>
-<body>
-    <h1>Animal List</h1>
+@extends('layouts.app')
+
+@section('title', 'Animal List')
+
+@section('content')
+    <h1 class="mb-4">Animal List</h1>
 
     @if(session('success'))
-        <div>
+        <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-    <a href="{{ route('animals.create') }}">Add New Animal</a>
+    <a href="{{ route('animals.create') }}" class="btn btn-primary mb-3">Add New Animal</a>
 
-    <ul>
+    <ul class="list-group">
         @foreach ($animals as $animal)
-            <li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
                 <a href="{{ route('animals.show', $animal->id) }}">{{ $animal->name }}</a>
+                <form action="{{ route('animals.destroy', $animal->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
             </li>
         @endforeach
     </ul>
 
-    <a href="{{ url('/') }}">Back to Home</a>
-</body>
-</html>
+    <a href="{{ url('/') }}" class="btn btn-secondary mt-3">Back to Home</a>
+@endsection

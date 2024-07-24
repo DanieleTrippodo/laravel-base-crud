@@ -51,5 +51,13 @@ class AnimalController extends Controller
         return view('animals.show', compact('animal'));
     }
 
-    // Altri metodi...
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Animal $animal)
+    {
+        $animal->delete();
+
+        return redirect()->route('animals.index')->with('success', 'Animal deleted successfully.');
+    }
 }

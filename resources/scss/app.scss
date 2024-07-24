@@ -1,5 +1,6 @@
 // Per usare bootstrap in questo file SCSS - Puoi rimuoverlo se non ti serve
-@import "~bootstrap/scss/bootstrap.scss";
+@import "node_modules/bootstrap/scss/bootstrap";
+
 
 
 
@@ -8,6 +9,10 @@
 
 
 //? Regole CSS e SCSS
-body{
-    background-color: rgb(100, 52, 52);
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    color: #343a40;
 }
