@@ -17,23 +17,23 @@
 
     <form action="{{ route('animals.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mb-3">
+        <div class="mb-3 dark-theme">
             <label for="name" class="form-label">Name:</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dark-theme">
             <label for="species" class="form-label">Species:</label>
             <input type="text" id="species" name="species" class="form-control" value="{{ old('species') }}" required>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dark-theme">
             <label for="description" class="form-label">Description:</label>
             <textarea id="description" name="description" class="form-control">{{ old('description') }}</textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dark-theme">
             <label for="image_url" class="form-label">Image URL:</label>
             <input type="url" id="image_url" name="image_url" class="form-control" value="{{ old('image_url') }}">
         </div>
-        <div class="mb-3">
+        <div class="mb-3 dark-theme">
             <label for="image_file" class="form-label">Upload Image:</label>
             <input type="file" id="image_file" name="image_file" class="form-control">
         </div>
