@@ -34,7 +34,15 @@ class AnimalController extends Controller
             'name' => 'required|string|max:255',
             'species' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image_url' => 'nullable|url',
+            'image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        // Se è stato caricato un file, salvalo e ottieni il percorso
+        if ($request->hasFile('image_file')) {
+            $imagePath = $request->file('image_file')->store('images', 'public');
+            $validatedData['image_path'] = $imagePath;
+        }
 
         // Creazione di un nuovo animale
         Animal::create($validatedData);
