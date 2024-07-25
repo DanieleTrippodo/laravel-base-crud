@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\CharacterController;
 
-Route::get('/', [AnimalController::class, 'index']);
-Route::resource('animals', AnimalController::class);
+Route::get('/', [CharacterController::class, 'index']);
+Route::resource('characters', CharacterController::class);
