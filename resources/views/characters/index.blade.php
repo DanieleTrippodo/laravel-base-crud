@@ -16,14 +16,17 @@
     <ul class="list-group">
         @foreach ($characters as $character)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('characters.show', $character->id) }}">{{ $character->name }}</a>
+                <span>{{ $character->name }} @if($character->trashed()) <span class="badge bg-warning">Deleted</span> @endif</span>
                 <div>
-                    <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('characters.destroy', $character->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    </form>
+                    <a href="{{ route('characters.show', $character->id) }}" class="btn btn-primary btn-sm">View</a>
+                    @if(!$character->trashed())
+                        <a href="{{ route('characters.edit', $character->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{{ route('characters.destroy', $character->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    @endif
                 </div>
             </li>
         @endforeach

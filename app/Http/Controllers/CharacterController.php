@@ -12,7 +12,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::all();
+        $characters = Character::withTrashed()->get();
         return view('characters.index', compact('characters'));
     }
 
@@ -100,7 +100,6 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         $character->delete();
-
         return redirect()->route('characters.index')->with('success', 'Character deleted successfully.');
     }
 }
